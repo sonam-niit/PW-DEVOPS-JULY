@@ -1,0 +1,26 @@
+When 2 containers wants to communicate with each other
+they must be under one network.
+
+create Network:
+
+docker network create sonam
+docker network ls
+docker network inspect sonam
+
+Run containers in Network:
+docker run --name container1 -d -p 8080:80 --network=sonam nginx
+docker run --name container2 -d -p 9090:80 --network=sonam nginx
+
+Let's get into container1
+docker exec -it container1 bash
+    (here ping command not found so we need to install ping)
+    / # apt update
+    / # apt install iputils-ping
+    then ping
+    / # ping container2
+
+Now create container3 under some x network
+docker run --name container1 -d -p 8080:80 --network=my-network nginx
+
+again do the above process and try to ping container3
+you won't be able to communicate.

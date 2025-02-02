@@ -1,0 +1,24 @@
+BindMount:
+    Maps a directory or some file on the host to the container
+    you can give the absoulte path and you can use shared resources.
+
+To work with this Bind Mount
+
+Create one directory in your C: drive
+name it website
+create one index.html file in that and add some sample code
+We want to share this directory between host and container
+    docker run -d --name my_container -v C:/website:/usr/share/nginx/html -p 8080:80 nginx
+    Check localhost:8080
+
+if you are seeing your html code rather the default nginx page you can confirm 
+the bind Mount done successfully.
+========================================================================================
+Let's assume you are are some palce in your directory linux
+> mkdir website
+> cd website
+> echo 'Sample Hello From HTML' > index.html
+> cd ..
+
+docker run -d --name my_container -v "$(pwd)"/website:/usr/share/nginx/html -p 8080:80 nginx
+

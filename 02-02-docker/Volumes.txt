@@ -1,0 +1,48 @@
+Docker Containers are stateless by default, means data does not persist once you stop your
+container.
+
+Docker provides diffrent ways using that you can persist data.
+
+1. Volumes:
+    managed by Docker
+    stores in location /var/lib/docker/volumes
+    this location persist in host system
+
+Usage:  docker volume COMMAND
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove unused local volumes
+  rm          Remove one or more volumes
+  update      Update a volume (cluster volumes only)
+
+Create Volumes:
+    docker volume create my_volume
+See the created volume
+    docker volume ls
+This volume we can use by attaching it with container
+    docker run -d --name my_container -v my_volume:/app -p 80:80 nginx
+Verify the container status
+    docker ps 
+    also you can check browser localhost:80
+Let's View This volume content
+    docker exec -it my_container bash
+        /# ls /app
+        /# echo 'Hello from volume' > /app/file.txt
+        /# ls /app
+        /# cat /app/file.txt
+        /# exit
+Let's stop and rm container
+    docker stop my_container
+    docker rm my_container
+You can create another container and use this volume and access data.
+    docker run -d --name my_container -v my_volume:/data -p 80:80 nginx
+    docker exec -it my_container bash
+        /# ls /app
+        /# exit
+If you want you can Temporary container to access the data
+    docker run --rm -it -v my_volume:/data alpine sh
+    /# ls /data
+    /# exit
+this container will remove once you exit shell.

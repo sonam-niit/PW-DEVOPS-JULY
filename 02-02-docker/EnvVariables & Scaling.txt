@@ -1,0 +1,31 @@
+Let's Create one nodejs application
+project:
+    app/
+        server.js
+        Dockerfile
+    docker-compose.yml
+    .env
+Create one package.json file inside your project
+    cd /app
+    npm init -y
+    npm i express dotenv (install req dependencies)
+
+docker-compose up -d --build
+>docker ps
+>localhost:4000
+docker-compose down
+
+Scaling up
+-----------------------------------------
+web:
+    build: ./app
+    ports:
+      - "0:4000"
+    environment:
+      - PORT=${PORT}
+
+Change port to 0 so it can assign the port by itself
+- docker-compose up --scale web=3 --build -d
+- Verify using: docker ps
+
+access using diffrent ports and see the output

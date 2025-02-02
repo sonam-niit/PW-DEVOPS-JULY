@@ -1,0 +1,7 @@
+services:
+  web:
+    build: ./app
+    ports:
+      - "0:4000"
+    environment:
+      - PORT=${PORT}

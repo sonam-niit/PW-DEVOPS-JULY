@@ -1,0 +1,25 @@
+To Run multiplse services together which can run under the same network and used the shared volume
+
+we can create docker-compose file using that we can build the image, run the containers using
+one command, we can stop the running containers using one command.
+
+Open one folder in VS code 
+create one folder named backend:
+
+create package.json: npm init -y
+install dependencies: npm i express dotenv mysql2
+create .env file (add the code as mentioned)
+create src folder and inside that index.js file
+create Dockerfile for creating image
+
+create one project named frontend: npx create-react-app frontend
+if you get some error missing dependency you can copy the command and execute inside the frontend 
+folder with 
+cd frontend
+npm install --no-audit --save @testing-library/jest-dom@^5.14.1 @testing-library/react@^13.0.0 @testing-library/user-event@^13.2.1 web-vitals@^2.1.0 --legacy-peer-deps
+(this command will create the frontend folder)
+
+We will not make any changes in the frontend code 
+only we will create one docker file for building an image
+
+at the root folder create Docker-compose file where we are going to keep all the services

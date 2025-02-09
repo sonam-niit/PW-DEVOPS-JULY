@@ -23,3 +23,21 @@ We will not make any changes in the frontend code
 only we will create one docker file for building an image
 
 at the root folder create Docker-compose file where we are going to keep all the services
+
+
+once the docker-compose is created you can execute the command
+>docker-compose up -d --build
+(you can see 3 services running)
+to access any service details you can execute logs command
+
+docker logs frontend-container-name
+
+if they deployed successfully you can see output in browser for
+frontend: localhost:3000
+backend: localhost:5000
+
+for database: docker exec -it container-name mysql -u root -p 
+enter password
+    you will be inside the container
+    >show databases;
+    (here you can see your created database named myapp)

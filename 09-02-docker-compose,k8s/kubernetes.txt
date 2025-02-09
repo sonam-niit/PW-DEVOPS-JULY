@@ -1,0 +1,28 @@
+Kubernetes (K8s) is a tool which is open source
+used to manage the containers
+container orchestration
+
+Taking care of your containers
+
+How to setup it locally
+
+if you already have docker desktop open it> settings > select Kubernetes
+enable kubernetes --> apply and restart
+
+Kubectl
+--------
+is the command which we are using to comminicate with kubernetes cluster
+
+minikube
+------------
+Tool using that we can setup a local cluster in out system for learning 
+purpose.
+
+To start a cluster using minikube
+>minikube start
+To get the Node details
+>kubectl get nodes
+Check cluster details
+>kubectl cluster-info
+For more details of cluster to debug
+>kubectl cluster-info dump 

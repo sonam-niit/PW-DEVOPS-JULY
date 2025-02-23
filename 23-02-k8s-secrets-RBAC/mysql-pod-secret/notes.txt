@@ -1,0 +1,38 @@
+******** Create mysql-secret.yml *********
+
+> kubectl apply -f mysql-secret.yml
+> kubectl get secret
+> kubectl describe secret mysql-secret
+
+************* Create mysql-pod.yml **********
+> kubectl apply -f mysql-pod.yml
+> kubectl get pods
+> kubectl describe pod mysql-pod
+> kubectl logs mysql-pod
+
+If the pod is in running state we can get inside the pod
+
+> kubectl exec -it mysql-pod -- bin/bash
+
+you will be inside the bash 
+
+    # mysql -u root -p 
+    (enter root password and then enter)
+
+    you will be inside mysql terminal
+    >show database;
+    >exit
+
+    you can try to connect with another user
+
+    # mysql -u mysql-user -p 
+        (enter mysql-user password)
+    You will be inside mysql terminal
+    >show database;
+    >exit
+#exit (exit from bash)
+
+******* Clean up ***********
+
+>kubectl delete pod mysql-pod
+>kubectl delete secret mysql-secret

@@ -1,14 +1,18 @@
-## Docker File
-FROM node:20-alpine3.20
+# Use Node.js LTS version
+FROM node:18
 
-WORKDIR  /app
+# Set working directory
+WORKDIR /app
 
-COPY package.json package-lock.json  ./
-
+# Copy package.json and install dependencies
+COPY backend/package*.json ./
 RUN npm install
 
-COPY . .
+# Copy rest of the application
+COPY backend/ .
 
+# Expose port
 EXPOSE 5000
 
-CMD [ "node", "server.js" ]
+# Start the application
+CMD ["node", "server.js"]

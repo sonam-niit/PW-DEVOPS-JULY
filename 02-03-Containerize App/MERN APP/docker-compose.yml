@@ -1,21 +1,28 @@
-# Docker-compose file
+version: '3.8'
+
 services:
-  mysql:
-    image: mysql
-    ports:
-      - "3306:3306" 
+  db:
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: pw
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
 
   backend:
-    build: ./backend
+    build: .
+    container_name: node_app
+    restart: always
     ports:
-      - "5000:5000"
-    environment:
-      DB_HOST: mysql
-      DB_USER: root 
-      DB_PASSWORD: admin 
-      DB_NAME: pw
+      - "3000:3000"
     depends_on:
-      - mysql
+      - db
+    env_file:
+      - backend/.env
+
+volumes:
+  db_data:

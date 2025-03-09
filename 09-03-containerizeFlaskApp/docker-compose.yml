@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mysample
+    ports:
+      - "3306:3306"
+    volumes:
+      - flaskapp:/data/db
+
+  flask-app:
+    build: ./backend
+    container_name: flask_app
+    depends_on:
+      - mysql
+    ports:
+      - "5000:5000"
+
+  frontend: 
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - flask-app
+volumes:
+  flaskapp: 

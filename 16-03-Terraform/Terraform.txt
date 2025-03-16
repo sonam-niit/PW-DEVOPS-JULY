@@ -1,0 +1,110 @@
+terraform: IaC Tool which is used to define, provision and manage
+cloud infrastructure in a declarative approach.
+
+1. configuration file:
+    the configuration extention is .tf 
+    using HCL (Hashicorp configuration Language)
+    install extention:Hashicorp terraform in VSCode
+
+2. providers:
+    providers allows terraform to interact with cloud providers
+    like aws, azure, gcp etc...
+
+    provider "aws" {
+        region: "us-east-1"
+    }
+
+3. Recources:
+    defines infra components like aws instance, s3 bucket, policy etc..
+
+    resource "aws_instance" "example" {
+        ami = "Image_id"
+        instance_type = "t2.micro"
+    }
+
+4. Variables (create file variables.tf)
+    Variables allows parameterized data access and make the code dynamic
+
+    variable "instance_type" {
+        default = "t2.micro"
+    }
+
+    resource "aws_instance" "example" {
+        ami = "Image_id"
+        instance_type = var.instance_type
+    }
+
+5. Outputs (outputs.tf)
+    Displays meaning ful info like if instance created successfully we want 
+    to show instance ID or public IP 
+
+    output "instance_ip" {
+        value = aws_instance.example.public_ip
+    }
+
+6. State management:
+    manage state inside terraform.tfstate
+    track the changes of state 
+
+7. terraform Workflow:
+
+    step 1: terraform init (initialize terraform working directory)
+
+    step 2: terraform plan ( shows execution plan)
+
+    step 3: terraform apply (creates and updates your infra)
+
+    step 4: terraform destroy (delete resources)
+
+****** Terraform Implemetaion *********
+
+Let's Install Terraform Locally
+
+open wsl
+    link for installation commands:
+        https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+    once installed verify Version
+         terraform -version
+
+create folder example
+ create main.tf file and then execute below commands
+
+ terraform init
+ terraform plan
+ terraform apply
+ terraform destroy
+
+********* folder structure ************
+
+1. main.tf  
+    main configuration file which is entry point of execution
+2. variables.tf
+    you can configure variable
+    its default, type and description
+3. outputs.tf
+    contains output defination like public Ip, instance ID etc
+4. terraform.tfvars
+    contains values for the variables declared inside variable.tf file
+    these we can consider default values of local testing
+5. provider.tf
+    configure multiple providers like aws, azure, gcp etc
+6. backend.tf
+    store the state configuration. like if you are using remote backends
+    for s3 bucket, aure blob
+
+maintain modules unders the modules folder
+modules/: inside this module you can create submodules
+
+    submodule1:
+        main.tf
+        variables.tf
+        outputs.td
+
+Environment folder
+
+    configure environment specific configuration
+    this again you can configure inside terraform.tfvars file
+
+    dev/terraform.tfvars (development)
+    staging/terraform.tfvars (staging / testing)
+    prod/terraform.tfvars (production)

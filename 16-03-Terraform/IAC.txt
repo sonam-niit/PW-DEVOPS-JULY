@@ -1,0 +1,32 @@
+IAC: Infra as Code
+ manage infra and provisioning IT recources like servers, networks,
+ storages and databases.
+
+Key Principles
+-----------------------------
+
+1. Declarative and Imperative Approach
+   defines required state for infra and automatically it adjust
+   the configuration
+   -- Imperative Specifies step by step instruction to get the desired state.
+
+2. Automation & Repeatability:
+    reduce the manual configuration process by automating deployment
+    & scallig
+
+3. Version Control:
+    IaC configuration we can store in repo like GIT and also track the
+    changes.
+
+****** Types of IaC *******
+1. configuration management
+    -- installation of softwares and manage its configuration
+    -- maintain the required state
+    -- tools: Ansible, Puppet, Chef
+
+2. Orchestration + provisioning:
+    automate your resources creations between multiple cloud providers
+    tools: terraform
+
+3. Orchestration and containerization
+    -- docker and kubernetes

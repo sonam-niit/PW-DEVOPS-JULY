@@ -1,0 +1,29 @@
+Module is helping you to structure your terraform project.
+
+Its a container which is adding multiple resources together.
+In a project we should have atleast 1 module.
+
+We can create reusable modules for organizing and reusing of
+code.
+
+make project structure like
+
+    main-folder
+        modules
+            mod-1
+                main.tf 
+                outputs.tf
+                variables.tf
+            mod-2
+                main.tf 
+                outputs.tf
+                variables.tf
+        main.tf
+        outputs.tf 
+        variables.tf
+        terraform.tf
+
+Here also implemented Remote Backend so using that we can maintain the state 
+now using s3 bucket..
+
+storing terraform.tfstate file isside s3 bucket

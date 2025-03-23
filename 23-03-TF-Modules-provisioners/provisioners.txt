@@ -1,0 +1,15 @@
+Provisioners in Terraform
+
+it allows you to run commands or script locally or
+remotely.
+
+2 types:
+    1 Local: local-exec
+    2 remote: remote-exec
+
+where to use Them?
+
+install software
+configure system
+run shell scripts
+instruction to CI/CD system

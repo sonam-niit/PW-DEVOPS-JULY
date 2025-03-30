@@ -1,0 +1,64 @@
+TF Workspace?
+
+It a feature of TF which is allowing us to manage multiple environments
+like (dev, prod, staging) by using common configuration.
+
+When we are working with tf it provides default Workspace
+later on we can create Workspace as per our requirement
+
+Optimizing Workspace
+-- while working with the multiple environments
+it provides benefits
+
+        isolate state: manage state specific for diffrent environments
+        simplily configuration: common
+        reduces human error
+
+===================================================
+project:
+        main.tf
+        output.tf
+        variables.tf
+        terraform.tf
+        env
+           dev.tfvars
+           prod.tfvars
+           staging.tfvars
+
+terraform init (init terraform first)
+working with workspace:
+        terraform workspace list (by default you can see default)
+        terraform workspace new dev
+        terraform workspace new staging
+        terraform workspace new prod
+        terraform workspace list (check workspace)
+
+select workspace for apply terraform:
+        terraform workspace select dev
+        terraform apply -var-file=dev/dev.tfvars -auto-approve
+
+        terraform workspace select staging
+        terraform apply -var-file=dev/dev.tfvars -auto-approve
+
+        terraform workspace select prod
+        terraform apply -var-file=dev/dev.tfvars -auto-approve
+
+clean resources:
+        terraform workspace select dev
+        terraform destroy -var-file=env/dev.tfvars -auto-approve
+
+        terraform workspace select staging
+        terraform destroy -var-file=env/dev.tfvars -auto-approve
+
+        terraform workspace select prod
+        terraform destroy -var-file=env/dev.tfvars -auto-approve
+
+delete workspace:
+
+        before delete switch to default workspace:
+                terraform workspace select default
+
+        terraform workspace delete dev
+        terraform workspace delete staging
+        terraform workspace delete prod
+

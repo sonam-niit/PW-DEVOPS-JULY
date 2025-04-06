@@ -1,0 +1,39 @@
+Amazon Cloud Front is CDN service provider.
+Content Delivery Network (CDN)
+
+When you want provide any content like websites, Apis, videos and
+other web assets with high speed then we can use cloudfront.
+
+It works around the caching content and searching data 
+to the eqde locations around the world so users can access data from 
+near by geographically closer location rather than taking it from central server.
+
+Key Features:
+    Global Edge Network
+    Content caching
+    Origin Support: fetch content from S3 Buckets, EC2, LoadBalancers
+    HTTP Support
+    Custom Domain Support
+
+Step1: Go to S3 bucket and create Bucket: general purpose Bucket
+-- sonam-cloudfront-basket-001
+-- block all accesspoint uncheck this
+-- enable versioning
+-- create Bucket
+Updaload provided 3 files to your Bucket
+
+Bucket --> properties --> scroll down to last 
+Static Website Hosting --> edit --> enable 
+give the page index.html (skip optional part)
+save --> check the end point and try to access
+it will show 403 --> forbidden
+
+to get the access set the Bucket Policy:
+bucket --> permissions--> Policy--> edit -->
+policy generator --> select s3 bucket Policy
+Principal: *
+Actions: Get Object
+ARN: enter bucket arn/* (means you are giving permission to all objects in bucket)
+generate policy paste it in your bucket --> save --> check endpoint again
+
+Open AWS cloudfront and create distribution:
